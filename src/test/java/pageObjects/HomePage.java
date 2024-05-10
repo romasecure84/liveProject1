@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+
 public class HomePage {
     public WebDriver driver;
 
@@ -29,6 +31,7 @@ public class HomePage {
     By tablesLink = By.linkText("TABLES");
     By testStoreLink = By.linkText("TEST STORE");
     By aboutMeLink = By.linkText("ABOUT ME");
+    By cookie  =By.cssSelector(".close-cookie-warning > span");
 
     public  HomePage(WebDriver driver){
         this.driver=driver;
@@ -120,6 +123,10 @@ public class HomePage {
 
     public  WebElement getAboutMeLink() {
         return driver.findElement(aboutMeLink);
+    }
+
+    public WebElement getCookie() throws IOException{
+        return driver.findElement(cookie);
     }
 
 }
