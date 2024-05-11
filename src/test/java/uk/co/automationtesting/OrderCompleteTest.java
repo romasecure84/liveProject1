@@ -1,7 +1,7 @@
 package uk.co.automationtesting;
 
 import base.BasePage;
-import org.openqa.selenium.WebDriver;
+import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -46,13 +46,49 @@ public class OrderCompleteTest extends BasePage {
         Thread.sleep(2000);
         shoppingCart.getProceedToCheckButton().click();
 
+        OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo(driver);
+        Faker faker = new Faker();
+        personalInfo.getGenderMr().click();
+        personalInfo.getFirstNameField().sendKeys(faker.name().firstName());
+        personalInfo.getLastNameField().sendKeys(faker.name().lastName());
+        personalInfo.getEmailField().sendKeys(faker.internet().emailAddress());
+        personalInfo.getPasswordField().sendKeys(faker.internet().password());
+        personalInfo.getBirthDateField().sendKeys("01/01/2001");
+        personalInfo.getReceiveOrderCheckbox().click();
+        personalInfo.getPrivacyPolicyCheckbox().click();
+        personalInfo.getNewsletterCheckbox().click();
+        Thread.sleep(2000);
+        personalInfo.getContinueButton().click();
+
+        OrderFormDelivery formDelivery = new OrderFormDelivery(driver);
+        formDelivery.getCompanyNameField().sendKeys(faker.company().name());
+        formDelivery.getAddressField().sendKeys(faker.address().fullAddress());
+        formDelivery.getCityField().sendKeys(faker.address().city());
+        Select optionState = new Select(formDelivery.getStateDropdown());
+        optionState.selectByVisibleText("California");
+        formDelivery.getZipPostalCodeField().sendKeys("12345");
+        Select optionCountry = new Select(formDelivery.getCountryDropdown());
+        optionCountry.selectByVisibleText("United States");
+        formDelivery.getPhoneField().sendKeys(faker.phoneNumber().cellPhone());
+        //formDelivery.getInvoiceSameAddressCheckbox().click();
+        Thread.sleep(2000);
+        formDelivery.getContinueButton().click();
+
+        OrderFormShippingMethod shippingMethod = new OrderFormShippingMethod(driver);
+        shippingMethod.getDeliveryMessageTextbox().sendKeys(faker.address().fullAddress());
+        shippingMethod.getContinueButton().click();
+
+        OrderFormPayment payment = new OrderFormPayment(driver);
+        payment.getPayByCheck().click();
+        payment.getTermsAndConditions().click();
+        payment.getOrderButton().click();
 
     }
 
     @AfterTest
     public void tearDown() throws InterruptedException {
         Thread.sleep(5000);
-        driver.close();
-        driver = null;
+        //driver.close();
+        //driver = null;
     }
 }
