@@ -1,9 +1,10 @@
-package basePage;
+package base;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -30,21 +31,21 @@ public class BasePage {
 
 	public WebDriver getDriver() throws IOException {
 		if (prop.getProperty("browser").equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver",
+			System.setProperty("WebDriver.chrome.driver",
 					System.getProperty("user.dir") + "/src/test/java/drivers/chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (prop.getProperty("browser").equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver",
+			System.setProperty("WebDriver.gecko.driver",
 					System.getProperty("user.dir") + "/src/test/java/drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
 		} else {
-			System.setProperty("webdriver.edge.driver",
+			System.setProperty("WebDriver.edge.driver",
 					System.getProperty("user.dir") + "/src/test/java/drivers/msedgedriver.exe");
 			driver = new EdgeDriver();
 		}
 
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
 		return driver;
 	}

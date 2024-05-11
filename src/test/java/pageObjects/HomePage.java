@@ -29,7 +29,7 @@ public class HomePage {
     By popUpsLink = By.linkText("POP UPS & ALERTS");
     By predictiveSearchLink = By.linkText("PREDICTIVE SEARCH");
     By tablesLink = By.linkText("TABLES");
-    By testStoreLink = By.linkText("TEST STORE");
+    By testStoreLink = By.xpath("//*[text()='Test Store']");
     By aboutMeLink = By.linkText("ABOUT ME");
     By cookie  =By.cssSelector(".close-cookie-warning > span");
 
