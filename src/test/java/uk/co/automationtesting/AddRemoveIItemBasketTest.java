@@ -4,6 +4,7 @@ import base.BasePage;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -54,6 +55,7 @@ public class AddRemoveIItemBasketTest extends BasePage {
         shoppingCart.getDeleteItemOne().click();
         Thread.sleep(2000);
         System.out.println(shoppingCart.getTotalValue().getText());
+        Assert.assertEquals(shoppingCart.getTotalValue().getText(),"$30.80");
         shoppingCart.getProceedToCheckButton().click();
 
         OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo(driver);
