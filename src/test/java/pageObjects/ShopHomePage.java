@@ -9,11 +9,11 @@ public class ShopHomePage {
 
     By productOne = By.xpath("(//*[text()='Hummingbird printed t-shirt'])[1]");
     By productTwo = By.xpath("(//*[text()='Hummingbird printed sweater'])[1]");
-    By productThree = By.linkText("The best is yet to come'...");
-    By productFour = By.linkText("The adventure begins Framed...");
-    By productFive = By.linkText("Today is a good day Framed...");
+    By productThree = By.xpath("//*[text()='The best is yet to come'...']");
+    By productFour = By.xpath("//*[text()='The adventure begins Framed...']");
+    By productFive = By.xpath("//*[text()='Today is a good day Framed...']");
     By productSix = By.xpath("(//*[text()='Mug The best is yet to come'])[1]");
-    By productSeven = By.linkText("Mug The adventure begins");
+    By productSeven = By.xpath("//*[text()='Mug The adventure begins']");
     By productEight = By.xpath("(//*[text()='Mug Today is a good day'])");
 
     public ShopHomePage(WebDriver driver) {
