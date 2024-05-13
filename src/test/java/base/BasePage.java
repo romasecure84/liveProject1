@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -55,8 +54,8 @@ public class BasePage {
 		return url;
 	}
 
-	public void takeSnapShot(WebDriver webdriver) throws IOException {
-		File srcFile = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
+	public void takeSnapShot(String name) throws IOException {
+		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 		File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/"
 				+ timestamp() + ".png");
