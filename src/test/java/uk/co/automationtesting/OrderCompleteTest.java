@@ -25,21 +25,21 @@ public class OrderCompleteTest extends BasePage {
 
     @Test
     public void endToEndTest() throws InterruptedException, IOException {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
         homePage.getCookie().click();
         Thread.sleep(2000);
         homePage.getTestStoreLink().click();
 
-        ShopHomePage shopHomePage = new ShopHomePage(driver);
+        ShopHomePage shopHomePage = new ShopHomePage();
         shopHomePage.getProductOne().click();
 
-        ShopProductPage shopProductPage = new ShopProductPage(driver);
+        ShopProductPage shopProductPage = new ShopProductPage();
         Select option = new Select(shopProductPage.getSizeOption());
         option.selectByVisibleText("M");
         shopProductPage.getQuantityIncrease().click();
         shopProductPage.getAddToCartButton().click();
 
-        ShopContentPanel shopContentPanel = new ShopContentPanel(driver);
+        ShopContentPanel shopContentPanel = new ShopContentPanel();
         shopContentPanel.getCheckoutButton().click();
 
         ShoppingCart shoppingCart = new ShoppingCart(driver);
@@ -63,7 +63,7 @@ public class OrderCompleteTest extends BasePage {
         Thread.sleep(2000);
         personalInfo.getContinueButton().click();
 
-        OrderFormDelivery formDelivery = new OrderFormDelivery(driver);
+        OrderFormDelivery formDelivery = new OrderFormDelivery();
         formDelivery.getCompanyNameField().sendKeys(faker.company().name());
         formDelivery.getAddressField().sendKeys(faker.address().fullAddress());
         formDelivery.getCityField().sendKeys(faker.address().city());
@@ -81,7 +81,7 @@ public class OrderCompleteTest extends BasePage {
         shippingMethod.getDeliveryMessageTextbox().sendKeys(faker.address().fullAddress());
         shippingMethod.getContinueButton().click();
 
-        OrderFormPayment payment = new OrderFormPayment(driver);
+        OrderFormPayment payment = new OrderFormPayment();
         payment.getPayByCheck().click();
         payment.getTermsAndConditions().click();
         payment.getOrderButton().click();

@@ -1,12 +1,13 @@
 package pageObjects;
 
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
-public class HomePage {
+public class HomePage extends BasePage {
     public WebDriver driver;
 
     By toggle = By.cssSelector(".toggle");
@@ -33,99 +34,122 @@ public class HomePage {
     By aboutMeLink = By.linkText("ABOUT ME");
     By cookie  =By.cssSelector(".close-cookie-warning > span");
 
-    public  HomePage(WebDriver driver){
-        this.driver=driver;
+    public  HomePage() throws IOException {
+         super();
     }
 
-    public WebElement getToggle(){
+    public WebElement getToggle() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(toggle);
     }
 
-    public  WebElement getHomepageLink(){
+    public  WebElement getHomepageLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(homePageLink);
     }
 
-    public  WebElement getAccordionLink(){
+    public  WebElement getAccordionLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(accordionLink);
     }
 
-    public  WebElement getActionLink(){
+    public  WebElement getActionLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(actionLink);
     }
 
-    public  WebElement getBrowserTapLink(){
+    public  WebElement getBrowserTapLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(browserTabLink);
     }
 
-    public  WebElement getButtonsLink(){
+    public  WebElement getButtonsLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(buttonsLink);
     }
 
-    public  WebElement getCalculatorLink(){
+    public  WebElement getCalculatorLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(calculatorLink);
     }
 
-    public  WebElement getContactUsLink(){
+    public  WebElement getContactUsLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(contactUsLink);
     }
 
-    public  WebElement getDatePickerLink(){
+    public  WebElement getDatePickerLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(datePickerLink);
     }
 
-    public  WebElement getDropdownLink(){
+    public  WebElement getDropdownLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(dropdownLink);
     }
 
-    public  WebElement getFileUploadLink(){
+    public  WebElement getFileUploadLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(fileUploadLink);
     }
 
-    public  WebElement getHiddenElementsLink(){
+    public  WebElement getHiddenElementsLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(hiddenElementsLink);
     }
 
-    public  WebElement getIframesLink(){
+    public  WebElement getIframesLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(iframesLink);
     }
 
-    public  WebElement getLoaderLink(){
+    public  WebElement getLoaderLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(loaderLink);
     }
 
-    public  WebElement getLoaderTwoLink(){
+    public  WebElement getLoaderTwoLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(loaderTwoLink);
     }
 
-    public  WebElement getLoginPortalTestLink(){
+    public  WebElement getLoginPortalTestLink() throws IOException {
+        this.driver = getDriver();
         return  driver.findElement(loginPortalTestLink);
     }
 
-    public  WebElement getMouseMovementLink() {
+    public  WebElement getMouseMovementLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(mouseMovementLink);
     }
 
-    public  WebElement getPopUpsLink() {
+    public  WebElement getPopUpsLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(popUpsLink);
     }
 
-    public  WebElement getPredictiveSearchLink() {
+    public  WebElement getPredictiveSearchLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(predictiveSearchLink);
     }
 
-    public  WebElement getTablesLink() {
+    public  WebElement getTablesLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(tablesLink);
     }
 
-    public  WebElement getTestStoreLink() {
+    public  WebElement getTestStoreLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(testStoreLink);
     }
 
-    public  WebElement getAboutMeLink() {
+    public  WebElement getAboutMeLink() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(aboutMeLink);
     }
 
     public WebElement getCookie() throws IOException{
+        this.driver = getDriver();
         return driver.findElement(cookie);
     }
 

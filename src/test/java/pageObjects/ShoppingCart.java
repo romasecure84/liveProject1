@@ -1,10 +1,13 @@
 package pageObjects;
 
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ShoppingCart {
+import java.io.IOException;
+
+public class ShoppingCart extends BasePage {
     public WebDriver driver;
 
     By havePromo = By.cssSelector(".promo-code-button .collapse-button");
@@ -15,35 +18,42 @@ public class ShoppingCart {
     By deleteItemTwo = By.cssSelector(".cart-items .cart-item:nth-of-type(2) .float-xs-left");
     By totalValue = By.cssSelector(".cart-total .value");
 
-    public ShoppingCart(WebDriver driver){
-        this.driver =driver;
+    public ShoppingCart() throws IOException {
+        super();
     }
 
-    public WebElement getHavePromo(){
+    public WebElement getHavePromo() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(havePromo);
     }
 
-    public WebElement getPromoTextBox(){
+    public WebElement getPromoTextBox() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(promoTextBox);
     }
 
-    public WebElement getPromoAddButton(){
+    public WebElement getPromoAddButton() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(promoAddButton);
     }
 
-    public WebElement getProceedToCheckButton(){
+    public WebElement getProceedToCheckButton() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(proceedToCheckoutButton);
     }
 
-    public WebElement getDeleteItemOne(){
+    public WebElement getDeleteItemOne() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(deleteItemOne);
     }
 
-    public WebElement getDeleteItemTwo(){
+    public WebElement getDeleteItemTwo() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(deleteItemTwo);
     }
 
-    public WebElement getTotalValue(){
+    public WebElement getTotalValue() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(totalValue);
     }
 }

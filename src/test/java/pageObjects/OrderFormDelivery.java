@@ -1,10 +1,13 @@
 package pageObjects;
 
+import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderFormDelivery {
+import java.io.IOException;
+
+public class OrderFormDelivery extends BasePage {
     public WebDriver driver;
 
     By firstNameField = By.cssSelector(".form-fields input#field-firstname");
@@ -20,43 +23,55 @@ public class OrderFormDelivery {
     By invoiceSameAddressCheckbox = By.cssSelector("input#use_same_address");
     By continueButton = By.cssSelector("button[name='confirm-addresses']");
 
-    public OrderFormDelivery(WebDriver driver){
-        this.driver = driver;
+    public OrderFormDelivery() throws IOException {
+        super();
     }
-    public WebElement getFirstNameField(){
+    public WebElement getFirstNameField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(firstNameField);
     }
-    public WebElement getLastNameField(){
+    public WebElement getLastNameField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(lastNameField);
     }
-    public WebElement getCompanyNameField(){
+    public WebElement getCompanyNameField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(companyNameField);
     }
-    public WebElement getAddressField(){
+    public WebElement getAddressField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(addressField);
     }
-    public WebElement getAddressComplementField(){
+    public WebElement getAddressComplementField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(addressComplementField);
     }
-    public WebElement getCityField(){
+    public WebElement getCityField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(cityField);
     }
-    public WebElement getStateDropdown(){
+    public WebElement getStateDropdown() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(stateDropdown);
     }
-    public WebElement getZipPostalCodeField(){
+    public WebElement getZipPostalCodeField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(zipPostalCodeField);
     }
-    public WebElement getCountryDropdown(){
+    public WebElement getCountryDropdown() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(countryDropdown);
     }
-    public WebElement getPhoneField(){
+    public WebElement getPhoneField() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(phoneField);
     }
-    public WebElement getInvoiceSameAddressCheckbox(){
+    public WebElement getInvoiceSameAddressCheckbox() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(invoiceSameAddressCheckbox);
     }
-    public WebElement getContinueButton(){
+    public WebElement getContinueButton() throws IOException {
+        this.driver = getDriver();
         return driver.findElement(continueButton);
     }
 }
