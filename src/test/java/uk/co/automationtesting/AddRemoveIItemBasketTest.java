@@ -1,8 +1,13 @@
 package uk.co.automationtesting;
 
 import base.BasePage;
+import base.Hooks;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -14,14 +19,9 @@ import java.io.IOException;
 
 @Listeners(resources.Listeners.class)
 
-public class AddRemoveIItemBasketTest extends BasePage {
+public class AddRemoveIItemBasketTest extends Hooks {
     public AddRemoveIItemBasketTest() throws IOException {
         super();
-    }
-    @BeforeTest
-    public void setUp() throws IOException {
-        driver = getDriver();
-        driver.get(getUrl());
     }
 
     @Test
@@ -53,14 +53,17 @@ public class AddRemoveIItemBasketTest extends BasePage {
         Thread.sleep(2000);
         shopContentPanel.getCheckoutButton().click();
 
-        ShoppingCart shoppingCart = new ShoppingCart(driver);
+        ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.getDeleteItemOne().click();
-        Thread.sleep(2000);
+
+        waitForElementInvisible(shoppingCart.getDeleteItemOne(), 2);
+
+
         System.out.println(shoppingCart.getTotalValue().getText());
         Assert.assertEquals(shoppingCart.getTotalValue().getText(),"$30.80");
         shoppingCart.getProceedToCheckButton().click();
 
-        OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo(driver);
+        OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo();
         Faker faker = new Faker();
         personalInfo.getGenderMr().click();
         personalInfo.getFirstNameField().sendKeys(faker.name().firstName());
@@ -88,7 +91,7 @@ public class AddRemoveIItemBasketTest extends BasePage {
         Thread.sleep(2000);
         formDelivery.getContinueButton().click();
 
-        OrderFormShippingMethod shippingMethod = new OrderFormShippingMethod(driver);
+        OrderFormShippingMethod shippingMethod = new OrderFormShippingMethod();
         shippingMethod.getDeliveryMessageTextbox().sendKeys(faker.address().fullAddress());
         shippingMethod.getContinueButton().click();
 
@@ -97,12 +100,5 @@ public class AddRemoveIItemBasketTest extends BasePage {
         payment.getTermsAndConditions().click();
         payment.getOrderButton().click();
 
-    }
-
-    @AfterTest
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(5000);
-        //driver.close();
-        //driver = null;
     }
 }
