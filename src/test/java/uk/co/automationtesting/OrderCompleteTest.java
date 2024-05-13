@@ -1,6 +1,7 @@
 package uk.co.automationtesting;
 
 import base.BasePage;
+import base.Hooks;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterTest;
@@ -13,14 +14,9 @@ import java.io.IOException;
 
 @Listeners(resources.Listeners.class)
 
-public class OrderCompleteTest extends BasePage {
+public class OrderCompleteTest extends Hooks {
     public OrderCompleteTest() throws IOException {
         super();
-    }
-    @BeforeTest
-    public void setUp() throws IOException {
-        driver = getDriver();
-        driver.get(getUrl());
     }
 
     @Test
@@ -42,14 +38,14 @@ public class OrderCompleteTest extends BasePage {
         ShopContentPanel shopContentPanel = new ShopContentPanel();
         shopContentPanel.getCheckoutButton().click();
 
-        ShoppingCart shoppingCart = new ShoppingCart(driver);
+        ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.getHavePromo().click();
         shoppingCart.getPromoTextBox().sendKeys("20OFF");
         shoppingCart.getPromoAddButton().click();
         Thread.sleep(2000);
         shoppingCart.getProceedToCheckButton().click();
 
-        OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo(driver);
+        OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo();
         Faker faker = new Faker();
         personalInfo.getGenderMr().click();
         personalInfo.getFirstNameField().sendKeys(faker.name().firstName());
@@ -77,7 +73,7 @@ public class OrderCompleteTest extends BasePage {
         Thread.sleep(2000);
         formDelivery.getContinueButton().click();
 
-        OrderFormShippingMethod shippingMethod = new OrderFormShippingMethod(driver);
+        OrderFormShippingMethod shippingMethod = new OrderFormShippingMethod();
         shippingMethod.getDeliveryMessageTextbox().sendKeys(faker.address().fullAddress());
         shippingMethod.getContinueButton().click();
 
@@ -86,12 +82,5 @@ public class OrderCompleteTest extends BasePage {
         payment.getTermsAndConditions().click();
         payment.getOrderButton().click();
 
-    }
-
-    @AfterTest
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(5000);
-        //driver.close();
-        //driver = null;
     }
 }
