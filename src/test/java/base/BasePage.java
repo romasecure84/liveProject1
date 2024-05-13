@@ -17,7 +17,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BasePage {
-	public static WebDriver driver;
 	private String url;
 	private Properties prop;
 
@@ -29,24 +28,7 @@ public class BasePage {
 	}
 
 	public WebDriver getDriver() throws IOException {
-		if (prop.getProperty("browser").equals("chrome")) {
-			System.setProperty("WebDriver.chrome.driver",
-					System.getProperty("user.dir") + "/src/test/java/drivers/chromedriver.exe");
-			driver = new ChromeDriver();
-		} else if (prop.getProperty("browser").equals("firefox")) {
-			System.setProperty("WebDriver.gecko.driver",
-					System.getProperty("user.dir") + "/src/test/java/drivers/geckodriver.exe");
-			driver = new FirefoxDriver();
-		} else {
-			System.setProperty("WebDriver.edge.driver",
-					System.getProperty("user.dir") + "/src/test/java/drivers/msedgedriver.exe");
-			driver = new EdgeDriver();
-		}
-
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-
-		return driver;
+		return WebDriverInstance.getDriver();
 	}
 
 	public String getUrl() throws IOException {
@@ -55,7 +37,7 @@ public class BasePage {
 	}
 
 	public void takeSnapShot(String name) throws IOException {
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File srcFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 
 		File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/"
 				+ timestamp() + ".png");
