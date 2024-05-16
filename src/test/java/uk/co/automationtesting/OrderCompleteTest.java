@@ -1,11 +1,9 @@
 package uk.co.automationtesting;
 
-import base.BasePage;
+import base.ExtentManager;
 import base.Hooks;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.*;
@@ -19,12 +17,17 @@ public class OrderCompleteTest extends Hooks {
         super();
     }
 
-    @Test
+    @Test(testName = "End")
     public void endToEndTest() throws InterruptedException, IOException {
+
+        ExtentManager.log("Starting OrderCompleteTest... ");
+
         HomePage homePage = new HomePage();
         homePage.getCookie().click();
         Thread.sleep(2000);
         homePage.getTestStoreLink().click();
+
+        ExtentManager.pass("Reached the shop homepage");
 
         ShopHomePage shopHomePage = new ShopHomePage();
         shopHomePage.getProductOne().click();

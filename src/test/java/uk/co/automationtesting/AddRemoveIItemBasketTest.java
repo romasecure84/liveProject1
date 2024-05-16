@@ -1,6 +1,7 @@
 package uk.co.automationtesting;
 
 import base.BasePage;
+import base.ExtentManager;
 import base.Hooks;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
@@ -26,18 +27,33 @@ public class AddRemoveIItemBasketTest extends Hooks {
 
     @Test
     public void AddRemoveItemTest() throws IOException, InterruptedException {
+
+        ExtentManager.log("Starting AddRemoveItemBasketTest... ");
+
         HomePage homePage = new HomePage();
         homePage.getCookie().click();
         Thread.sleep(2000);
         homePage.getTestStoreLink().click();
 
         ShopHomePage shopHomePage = new ShopHomePage();
+
+        ExtentManager.pass("Reached the shop homepage");
+
         shopHomePage.getProductTwo().click();
 
         ShopProductPage shopProductPage = new ShopProductPage();
+
+        ExtentManager.pass("Reached the shop product page");
+
         Select option = new Select(shopProductPage.getSizeOption());
         option.selectByVisibleText("M");
+
+        ExtentManager.pass("Have successfully selevted produt size");
+
         shopProductPage.getQuantityIncrease().click();
+
+        ExtentManager.pass("Have successfully increased quantity");
+
         shopProductPage.getAddToCartButton().click();
 
         ShopContentPanel shopContentPanel = new ShopContentPanel();
@@ -60,7 +76,14 @@ public class AddRemoveIItemBasketTest extends Hooks {
 
 
         System.out.println(shoppingCart.getTotalValue().getText());
-        Assert.assertEquals(shoppingCart.getTotalValue().getText(),"$30.80");
+        try {
+            Assert.assertEquals(shoppingCart.getTotalValue().getText(),"$30.81");
+            ExtentManager.pass("The total amount matches the expected amount.");
+        }catch(AssertionError e){
+            Assert.fail("Cart amount did not match the expected amount, it found " + shoppingCart.getTotalValue());
+            ExtentManager.fail("Failed!");
+        }
+
         shoppingCart.getProceedToCheckButton().click();
 
         OrderFormPersonalInfo personalInfo = new OrderFormPersonalInfo();
